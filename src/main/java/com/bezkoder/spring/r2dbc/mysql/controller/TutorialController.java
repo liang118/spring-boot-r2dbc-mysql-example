@@ -24,51 +24,51 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api")
 public class TutorialController {
-  @Autowired
-  TutorialService tutorialService;
-  
-  @GetMapping("/tutorials")
-  @ResponseStatus(HttpStatus.OK)
-  public Flux<Tutorial> getAllTutorials(@RequestParam(required = false) String title) {
-    if (title == null)
-      return tutorialService.findAll();
-    else
-      return tutorialService.findByTitleContaining(title);
-  }
+	@Autowired
+	TutorialService tutorialService;
 
-  @GetMapping("/tutorials/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public Mono<Tutorial> getTutorialById(@PathVariable("id") int id) {
-    return tutorialService.findById(id);
-  }
+	@GetMapping("/tutorials")
+	@ResponseStatus(HttpStatus.OK)
+	public Flux<Tutorial> getAllTutorials(@RequestParam(required = false) String title) {
+		if (title == null)
+			return tutorialService.findAll();
+		else
+			return tutorialService.findByTitleContaining(title);
+	}
 
-  @PostMapping("/tutorials")
-  @ResponseStatus(HttpStatus.CREATED)
-  public Mono<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
-    return tutorialService.save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false));
-  }
+	@GetMapping("/tutorials/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Mono<Tutorial> getTutorialById(@PathVariable("id") int id) {
+		return tutorialService.findById(id);
+	}
 
-  @PutMapping("/tutorials/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public Mono<Tutorial> updateTutorial(@PathVariable("id") int id, @RequestBody Tutorial tutorial) {
-    return tutorialService.update(id, tutorial);
-  }
+	@PostMapping("/tutorials")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Mono<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
+		return tutorialService.save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false));
+	}
 
-  @DeleteMapping("/tutorials/{id}")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Mono<Void> deleteTutorial(@PathVariable("id") int id) {
-    return tutorialService.deleteById(id);
-  }
+	@PutMapping("/tutorials/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Mono<Tutorial> updateTutorial(@PathVariable("id") int id, @RequestBody Tutorial tutorial) {
+		return tutorialService.update(id, tutorial);
+	}
 
-  @DeleteMapping("/tutorials")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Mono<Void> deleteAllTutorials() {
-    return tutorialService.deleteAll();
-  }
+	@DeleteMapping("/tutorials/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public Mono<Void> deleteTutorial(@PathVariable("id") int id) {
+		return tutorialService.deleteById(id);
+	}
 
-  @GetMapping("/tutorials/published")
-  @ResponseStatus(HttpStatus.OK)
-  public Flux<Tutorial> findByPublished() {
-    return tutorialService.findByPublished(true);
-  }
+	@DeleteMapping("/tutorials")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public Mono<Void> deleteAllTutorials() {
+		return tutorialService.deleteAll();
+	}
+
+	@GetMapping("/tutorials/published")
+	@ResponseStatus(HttpStatus.OK)
+	public Flux<Tutorial> findByPublished() {
+		return tutorialService.findByPublished(true);
+	}
 }

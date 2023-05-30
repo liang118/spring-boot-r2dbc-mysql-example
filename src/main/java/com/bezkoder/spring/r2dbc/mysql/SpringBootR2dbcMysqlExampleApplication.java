@@ -16,18 +16,18 @@ import io.r2dbc.spi.ConnectionFactory;
 @SpringBootApplication
 public class SpringBootR2dbcMysqlExampleApplication {
 
-  @Bean
-  ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
+	@Bean
+	ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
 
-    ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
-    initializer.setConnectionFactory(connectionFactory);
-    initializer.setDatabasePopulator(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
+		ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
+		initializer.setConnectionFactory(connectionFactory);
+		initializer.setDatabasePopulator(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
 
-    return initializer;
-  }
+		return initializer;
+	}
 
-  public static void main(String[] args) {
-    SpringApplication.run(SpringBootR2dbcMysqlExampleApplication.class, args);
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootR2dbcMysqlExampleApplication.class, args);
+	}
 
 }

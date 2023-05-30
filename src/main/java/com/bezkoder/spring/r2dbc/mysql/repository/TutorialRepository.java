@@ -8,8 +8,8 @@ import com.bezkoder.spring.r2dbc.mysql.model.Tutorial;
 import reactor.core.publisher.Flux;
 
 @Repository
-public interface TutorialRepository extends R2dbcRepository<Tutorial, Integer>{
-  Flux<Tutorial> findByTitleContaining(String title);
-  
-  Flux<Tutorial> findByPublished(boolean isPublished);
+public interface TutorialRepository extends R2dbcRepository<Tutorial, Integer> {
+	Flux<Tutorial> findByTitleContaining(String title);
+
+	Flux<Tutorial> findByPublished(boolean isPublished);
 }

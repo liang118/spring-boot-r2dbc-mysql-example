@@ -4,8 +4,7 @@ import org.springframework.data.annotation.Id;
 
 public class Tutorial {
   
-  @Id
-  private int id;
+  @Id private int id;
 
   private String title;
 
